@@ -52,3 +52,14 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_ssh_ipv4" {
 }
 ###################### ######## ##### ####### #### ######################
 
+###################### Internet Gateway ######################
+resource "aws_internet_gateway" "gw_rds" {
+  vpc_id = aws_vpc.vpc_rds.id
+
+  tags = {
+    Name      = "Internet Gateway"
+    ManagedBy = var.tags_ManagedBy
+  }
+}
+###################### ######## ####### ######################
+
