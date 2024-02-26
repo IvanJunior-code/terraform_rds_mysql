@@ -15,8 +15,8 @@ resource "aws_key_pair" "ssh_key_terraform" {
 resource "aws_instance" "ec2_terraform" {
   ami                    = "ami-01079c0484361f159" # Ubuntu-2023-10-31T09-14
   instance_type          = "t3.small"
-  #subnet_id              = aws_subnet.subnet_terraform.id
-  #vpc_security_group_ids = [aws_security_group.sg_terraform.id]
+  subnet_id              = aws_subnet.subnet_rds.id
+  vpc_security_group_ids = [aws_security_group.sg_rds.id]
 
   tags = {
     Name      = "EC2"
