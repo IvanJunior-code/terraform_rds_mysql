@@ -23,3 +23,16 @@ resource "aws_subnet" "subnet_rds" {
 }
 ###################### ###### ######################
 
+###################### Security Group ######################
+resource "aws_security_group" "sg_rds" {
+  name        = var.sg_name
+  description = "Allow SSH, HTTP, HTTPS inbound traffic and outbound traffic"
+  vpc_id      = aws_vpc.vpc_rds.id
+
+  tags = {
+    Name      = "Security Group"
+    ManagedBy = var.tags_ManagedBy
+  }
+}
+###################### ######## ##### ######################
+
