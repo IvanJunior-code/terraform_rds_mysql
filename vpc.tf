@@ -36,3 +36,19 @@ resource "aws_security_group" "sg_rds" {
 }
 ###################### ######## ##### ######################
 
+###################### Security Group Ingress Rule ######################
+resource "aws_vpc_security_group_ingress_rule" "ingress_ssh_ipv4" {
+  security_group_id = aws_security_group.sg_rds.id
+  description       = "Allow SSH inbound traffic IPv4."
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 22
+  ip_protocol       = "tcp"
+  to_port           = 22
+
+  tags = {
+    Name      = "Ingress Rule SSH IPv4"
+    ManagedBy = var.tags_ManagedBy
+  }
+}
+###################### ######## ##### ####### #### ######################
+
